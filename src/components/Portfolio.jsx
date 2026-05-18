@@ -1,31 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Portfolio.css';
 
-const projects = [
-  {
-    id: 1,
-    title: 'Nexus Fintech App',
-    category: 'UI/UX Design • Case Study',
-    description: 'A complete redesign of a mobile banking app focusing on accessibility and speed.',
-    color: '#00f2fe'
-  },
-  {
-    id: 2,
-    title: 'Aura E-Commerce',
-    category: 'Visual Design • Web',
-    description: 'A minimal and immersive shopping experience for a luxury fashion brand.',
-    color: '#7928ca'
-  },
-  {
-    id: 3,
-    title: 'Pulse Dashboard',
-    category: 'Product Design • Dashboard',
-    description: 'Complex data visualization made simple and beautiful for SaaS platforms.',
-    color: '#ff007f'
-  }
-];
-
 const Portfolio = () => {
+  const [projects, setProjects] = useState([]);
+
+  useEffect(() => {
+    const storedProjects = JSON.parse(localStorage.getItem('projects')) || [
+      { id: 1, title: 'SaaS AI Form Builder', category: 'Full Stack', description: 'AI-powered dynamic form generator using Gemini API.', color: '#00f2fe' },
+      { id: 2, title: 'Nexus E-Commerce', category: 'MERN Stack', description: 'Full-stack e-commerce platform with secure payments.', color: '#7928ca' },
+      { id: 3, title: 'Pulse Analytics', category: 'MERN Stack', description: 'Real-time data visualization dashboard.', color: '#ff007f' }
+    ];
+    setProjects(storedProjects);
+  }, []);
+
   return (
     <section id="work" className="portfolio">
       <div className="section-header">
