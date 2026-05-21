@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { KeyRound, User, Lock, AlertCircle } from 'lucide-react';
 import './Login.css';
 
 const Login = () => {
@@ -10,46 +11,69 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Mock authentication
+    
+    // Authenticate admin (admin/admin)
     if (username === 'admin' && password === 'admin') {
       localStorage.setItem('isAuthenticated', 'true');
       navigate('/admin');
     } else {
-      setError('Invalid credentials. Try admin/admin');
+      setError('Invalid credentials. Use admin/admin');
     }
   };
 
   return (
-    <div className="login-page">
-      <div className="login-card">
-        <h2>Admin Login</h2>
-        <p>Enter your credentials to access the dashboard.</p>
+    <div className="login-page-container">
+      <div className="login-glass-card glass-panel">
         
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label>Username</label>
-            <input 
-              type="text" 
-              value={username} 
-              onChange={(e) => setUsername(e.target.value)} 
-              placeholder="admin"
-              required 
-            />
+        <div className="login-header-wrapper">
+          <div className="login-icon-bubble">
+            <KeyRound size={28} />
           </div>
-          <div className="form-group">
-            <label>Password</label>
-            <input 
-              type="password" 
-              value={password} 
-              onChange={(e) => setPassword(e.target.value)} 
-              placeholder="admin"
-              required 
-            />
+          <h2>Workspace Login</h2>
+          <p>Access the admin panel to update projects and view client inquiries.</p>
+        </div>
+
+        {error && (
+          <div className="login-error-banner">
+            <AlertCircle size={16} className="error-banner-icon" />
+            <span>{error}</span>
           </div>
-          
-          {error && <p className="error-message">{error}</p>}
-          
-          <button type="submit" className="btn-primary-large">Login</button>
+        )}
+
+        <form onSubmit={handleSubmit} className="login-actual-form">
+          <div className="form-group violet-focus">
+            <label htmlFor="login-username">Username</label>
+            <div className="input-icon-wrapper">
+              <User size={15} className="input-icon" />
+              <input 
+                type="text" 
+                id="login-username" 
+                value={username} 
+                onChange={(e) => setUsername(e.target.value)} 
+                placeholder="admin"
+                required 
+              />
+            </div>
+          </div>
+
+          <div className="form-group cyan-focus">
+            <label htmlFor="login-password">Password</label>
+            <div className="input-icon-wrapper">
+              <Lock size={15} className="input-icon" />
+              <input 
+                type="password" 
+                id="login-password" 
+                value={password} 
+                onChange={(e) => setPassword(e.target.value)} 
+                placeholder="••••••••"
+                required 
+              />
+            </div>
+          </div>
+
+          <button type="submit" className="btn-primary-large login-submit-btn">
+            Authenticate & Open Dashboard
+          </button>
         </form>
       </div>
     </div>

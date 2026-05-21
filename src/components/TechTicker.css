@@ -1,0 +1,85 @@
+.ticker-container {
+  width: 100%;
+  padding: 1.5rem 0;
+  background: rgba(2, 6, 23, 0.4);
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+}
+
+/* Beautiful fading mask edges */
+.ticker-container::before, .ticker-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 150px;
+  height: 100%;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.ticker-container::before {
+  left: 0;
+  background: linear-gradient(to right, #030712 15%, transparent 100%);
+}
+
+.ticker-container::after {
+  right: 0;
+  background: linear-gradient(to left, #030712 15%, transparent 100%);
+}
+
+.ticker-wrapper {
+  display: flex;
+  width: 100%;
+}
+
+.ticker-track {
+  display: flex;
+  align-items: center;
+  gap: 3.5rem;
+  white-space: nowrap;
+  animation: scrollMarquee 35s linear infinite;
+}
+
+/* Pause scroll animation on mouse hover */
+.ticker-track:hover {
+  animation-play-state: paused;
+}
+
+.ticker-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: default;
+}
+
+.ticker-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 10px currentColor;
+}
+
+.ticker-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.ticker-item:hover .ticker-name {
+  color: #fff;
+  transform: scale(1.05);
+}
+
+@keyframes scrollMarquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.3333%); } /* Exact third of total width due to 3x duplication */
+}

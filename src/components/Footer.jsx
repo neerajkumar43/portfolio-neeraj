@@ -5,15 +5,15 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
   
   return (
-    <footer id="contact" className="footer">
+    <footer className="footer">
       <div className="footer-content">
         <div className="footer-left">
-          <p>&copy; {currentYear} Neeraj. Built with React.</p>
+          <p>&copy; {currentYear} Neeraj. Crafted with precision in React.</p>
         </div>
         <div className="footer-right">
-          <a href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a href="#" target="_blank" rel="noopener noreferrer">Dribbble</a>
-          <a href="#" target="_blank" rel="noopener noreferrer">Twitter</a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="mailto:kumarneeraj.inbox@gmail.com">Email</a>
         </div>
       </div>
     </footer>

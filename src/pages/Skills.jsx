@@ -1,45 +1,65 @@
 import React from 'react';
+import { Palette, Terminal, Wrench } from 'lucide-react';
 import './Skills.css';
 
 const skillCategories = [
   {
-    title: 'Design',
-    skills: ['Figma', 'UI Design', 'UX Research', 'Wireframing', 'Prototyping', 'Design Systems', 'User Flows']
+    title: 'Interface Design',
+    icon: <Palette size={20} />,
+    color: 'var(--color-violet)',
+    skills: ['Figma', 'UI/UX Design', 'User Research', 'Wireframing', 'Prototyping', 'Design Systems', 'User Flows', 'Information Architecture']
   },
   {
-    title: 'Development',
-    skills: ['HTML', 'Tailwind CSS', 'JavaScript', 'React.js', 'Node.js']
+    title: 'Full Stack Development',
+    icon: <Terminal size={20} />,
+    color: 'var(--color-cyan)',
+    skills: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'JavaScript', 'HTML5 & CSS3', 'Tailwind CSS', 'REST APIs', 'JWT Auth']
   },
   {
-    title: 'Tools & Management',
-    skills: ['VS Code', 'Project Management', 'Git']
+    title: 'Tools & Workflows',
+    icon: <Wrench size={20} />,
+    color: 'var(--color-emerald)',
+    skills: ['Git & GitHub', 'VS Code', 'Postman', 'Vercel Deployment', 'npm & Node Packages', 'Project Management', 'Agile Methodologies']
   }
 ];
 
 const Skills = () => {
   return (
-    <div className="skills-page">
-      <div className="skills-container">
+    <section id="skills" className="skills-section-container">
+      <div className="skills-header-center">
         <span className="section-tag">Capabilities</span>
-        <h1 className="skills-title">Skills & Expertise</h1>
-        <p className="skills-subtitle">
-          Here are the technologies and methodologies I use to bring ideas to life.
+        <h2 className="section-title">Technical Arsenal & Expertise</h2>
+        <p className="section-subtitle">
+          The technologies, tools, and methodologies I leverage to design intuitive interfaces and develop highly scalable web applications.
         </p>
-        
-        <div className="skills-grid">
-          {skillCategories.map((category, index) => (
-            <div className="skill-category" key={index}>
-              <h2 className="category-title">{category.title}</h2>
-              <div className="tags-container">
-                {category.skills.map((skill, sIndex) => (
-                  <span className="skill-tag" key={sIndex}>{skill}</span>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
       </div>
-    </div>
+
+      <div className="skills-grid-layout">
+        {skillCategories.map((cat, index) => (
+          <div 
+            className="skill-card-panel glass-panel" 
+            key={index}
+            style={{ '--card-accent': cat.color }}
+          >
+            <div className="skill-card-header">
+              <div className="skill-icon-bubble">
+                {cat.icon}
+              </div>
+              <h3>{cat.title}</h3>
+            </div>
+            
+            <div className="skill-tags-flex">
+              {cat.skills.map((skill, sIndex) => (
+                <span className="skill-tag-bubble" key={sIndex}>
+                  <span className="tag-bullet"></span>
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 };
 
